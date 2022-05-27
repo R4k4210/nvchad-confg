@@ -42,5 +42,15 @@ return {
      end
    },
 
-   ["matze/vim-move"] = {},
+   ["matze/vim-move"] = {
+     config = function()
+        require "custom.plugins.vim-move"
+     end
+   },
+
+   ["github/copilot.vim"] = {
+    config = function()
+      require "custom.plugins.copilot"
+    end
+   }
 }

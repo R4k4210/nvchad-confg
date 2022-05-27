@@ -63,6 +63,16 @@ M.general = {
       ["<leader>gc"] = { "<cmd> :Git commit <CR>", "☕ git commit" },
       ["<leader>gl"] = { "<cmd> :Git pull <CR>", "☕ git pull" },
 
+      -- window split
+      ["<leader>ws"] = { "<cmd> :split <CR>", " split window horizontal" },
+      ["<leader>wv"] = { "<cmd> :vsplit <CR>", " split window vertical" },
+
+      -- resize split pane
+      ["<M-up>"] = { "<cmd> :resize -2 <CR>", " resize window up" },
+      ["<M-down>"] = { "<cmd> :resize +2 <CR>", " resize window down" },
+      ["<M-left>"] = { "<cmd> :vertical resize -2 <CR>", " resize window left" },
+      ["<M-right>"] = { "<cmd> :vertical resize +2 <CR>", " resize window right" },
+
    },
 
    t = {
