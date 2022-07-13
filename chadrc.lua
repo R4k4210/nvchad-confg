@@ -26,7 +26,8 @@ M.plugins = {
 }
 
 M.ui = {
-   theme = "gruvchad",
+  theme = "gruvchad",
+  -- theme_toggle = { "onedark", "one_light" },
 }
 
 M.mappings = require "custom.mappings"

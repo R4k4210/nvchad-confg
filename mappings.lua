@@ -8,6 +8,7 @@ M.disabled = {
    n = {
      ["<leader>wK"] = "",
      ["<leader>wk"] = "",
+     ["K"] = "",
    }
 }
 
@@ -80,22 +81,47 @@ M.general = {
    },
 }
 
-M.bufferline = {
+M.tabufline = {
 
    n = {
       -- new buffer
       ["<S-b>"] = { "<cmd> enew <CR>", "烙 new buffer" },
 
       -- cycle through buffers
-      ["<TAB>"] = { "<cmd> BufferLineCycleNext <CR>", "  cycle next buffer" },
-      ["<S-Tab>"] = { "<cmd> BufferLineCyclePrev <CR>", "  cycle prev buffer" },
+      ["<TAB>"] = { "<cmd> Tbufnext <CR>", "  goto next buffer" },
+      ["<S-Tab>"] = { "<cmd> Tbufprev <CR> ", "  goto prev buffer" },
+
+      -- cycle through tabs
+      ["<leader>tp"] = { "<cmd> tabprevious <CR>", "  goto next tab" },
+      ["<leader>tn"] = { "<cmd> tabnext <CR> ", "  goto prev tab" },
 
       -- close buffer + hide terminal buffer
       ["<leader>q"] = {
          function()
-            nvchad.close_buffer()
+            require("core.utils").close_buffer()
          end,
          "   close buffer",
+      },
+   },
+}
+
+M.comment = {
+
+   -- toggle comment in both modes
+   n = {
+      ["<leader>/"] = {
+         function()
+            require("Comment.api").toggle_current_linewise()
+         end,
+
+         "蘒  toggle comment",
+      },
+   },
+
+   v = {
+      ["<leader>/"] = {
+         "<ESC><cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>",
+         "蘒  toggle comment",
       },
    },
 }
@@ -108,6 +134,199 @@ M.nvimtree = {
 
       -- focus
       ["C-n"] = { "<cmd> NvimTreeFocus <CR>", "   focus nvimtree" },
+   },
+
+
+}
+
+M.nvterm = {
+   t = {
+      -- toggle in terminal mode
+      ["<A-i>"] = {
+         function()
+            require("nvterm.terminal").toggle "float"
+         end,
+         "   toggle floating term",
+      },
+
+      ["<A-h>"] = {
+         function()
+            require("nvterm.terminal").toggle "horizontal"
+         end,
+         "   toggle horizontal term",
+      },
+
+      ["<A-v>"] = {
+         function()
+            require("nvterm.terminal").toggle "vertical"
+         end,
+         "   toggle vertical term",
+      },
+   },
+
+   n = {
+      -- toggle in normal mode
+      ["<A-i>"] = {
+         function()
+            require("nvterm.terminal").toggle "float"
+         end,
+         "   toggle floating term",
+      },
+
+      ["<A-ho>"] = {
+         function()
+            require("nvterm.terminal").toggle "horizontal"
+         end,
+         "   toggle horizontal term",
+      },
+
+      ["<A-v>"] = {
+         function()
+            require("nvterm.terminal").toggle "vertical"
+         end,
+         "   toggle vertical term",
+      },
+
+      -- new
+
+      ["<leader>h"] = {
+         function()
+            require("nvterm.terminal").new "horizontal"
+         end,
+         "   new horizontal term",
+      },
+
+      ["<leader>v"] = {
+         function()
+            require("nvterm.terminal").new "vertical"
+         end,
+         "   new vertical term",
+      },
+   },
+}
+
+M.lspconfig = {
+   -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
+
+   n = {
+      ["gD"] = {
+         function()
+            vim.lsp.buf.declaration()
+         end,
+         "   lsp declaration",
+      },
+
+      ["gd"] = {
+         function()
+            vim.lsp.buf.definition()
+         end,
+         "   lsp definition",
+      },
+
+      ["HO"] = {
+         function()
+            vim.lsp.buf.hover()
+         end,
+         "   lsp hover",
+      },
+
+      ["gi"] = {
+         function()
+            vim.lsp.buf.implementation()
+         end,
+         "   lsp implementation",
+      },
+
+      ["<leader>ls"] = {
+         function()
+            vim.lsp.buf.signature_help()
+         end,
+         "   lsp signature_help",
+      },
+
+      ["<leader>D"] = {
+         function()
+            vim.lsp.buf.type_definition()
+         end,
+         "   lsp definition type",
+      },
+
+      ["<leader>ra"] = {
+         function()
+            require("nvchad.ui.renamer").open()
+         end,
+         "   lsp rename",
+      },
+
+      ["<leader>ca"] = {
+         function()
+            vim.lsp.buf.code_action()
+         end,
+         "   lsp code_action",
+      },
+
+      ["gr"] = {
+         function()
+            vim.lsp.buf.references()
+         end,
+         "   lsp references",
+      },
+
+      ["<leader>f"] = {
+         function()
+            vim.diagnostic.open_float()
+         end,
+         "   floating diagnostic",
+      },
+
+      ["[d"] = {
+         function()
+            vim.diagnostic.goto_prev()
+         end,
+         "   goto prev",
+      },
+
+      ["d]"] = {
+         function()
+            vim.diagnostic.goto_next()
+         end,
+         "   goto_next",
+      },
+
+      ["<leader>qw"] = {
+         function()
+            vim.diagnostic.setloclist()
+         end,
+         "   diagnostic setloclist",
+      },
+
+      ["<leader>fm"] = {
+         function()
+            vim.lsp.buf.formatting()
+         end,
+         "   lsp formatting",
+      },
+
+      ["<leader>wa"] = {
+         function()
+            vim.lsp.buf.add_workspace_folder()
+         end,
+         "   add workspace folder",
+      },
+
+      ["<leader>wr"] = {
+         function()
+            vim.lsp.buf.remove_workspace_folder()
+         end,
+         "   remove workspace folder",
+      },
+
+      ["<leader>wl"] = {
+         function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+         end,
+         "   list workspace folders",
+      },
    },
 }
 
