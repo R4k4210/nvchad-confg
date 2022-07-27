@@ -6,10 +6,6 @@ local userPlugins = require "custom.plugins"
 M.plugins = {
 
    options = {
-      lspconfig = {
-         setup_lspconf = "custom.plugins.lspconfig",
-      },
-
       statusline = {
          separator_style = "round",
       },
@@ -20,6 +16,7 @@ M.plugins = {
       ["nvim-treesitter/nvim-treesitter"] = override.treesitter,
       ["nvim-telescope/telescope.nvim"] = override.telescope,
       ["goolord/alpha-nvim"] = override.goolord,
+      --["williamboman/mason"] = override.mason,
    },
 
    user = userPlugins,
@@ -27,7 +24,7 @@ M.plugins = {
 
 M.ui = {
   theme = "gruvchad",
-  -- theme_toggle = { "onedark", "one_light" },
+  theme_toggle = { "gruvchad", "gruvbox_light" },
 }
 
 M.mappings = require "custom.mappings"

@@ -1,6 +1,6 @@
 return {
    ["windwp/nvim-ts-autotag"] = {
-      ft = { "html", "javascriptreact" },
+      ft = { "html", "javascriptreact", "typescriptreact", "tsx", "jsx" },
       after = "nvim-treesitter",
       config = function()
          require("nvim-ts-autotag").setup()
@@ -46,6 +46,12 @@ return {
      config = function()
         require "custom.plugins.vim-move"
      end
+   },
+
+   ["neovim/nvim-lspconfig"] = {
+     config = function()
+       require "custom.plugins.lspconfig"
+     end,
    },
 
    ["github/copilot.vim"] = {
